@@ -7,7 +7,6 @@ library(lattice)
 library(rasterVis)
 library(tidyverse)
 
-
 setwd("J:/R project/LC08_L2SP_136045_20181231_31.12.2018") 
 getwd()
 #raster layer creation
@@ -34,6 +33,7 @@ near_infrared_2022=raster("J:/R project/LC08_L2SP_136045_20221226_26.12.2022/LC0
 ndvi_2022= (near_infrared_2022-visible_red_2022)/(near_infrared_2022+visible_red_2022)
 plot(ndvi_2022)
 writeRaster(ndvi_2022,"NDVI2022_output",format="GTIFF", type="INT2U", overwrite=TRUE)
+
 setwd("J:/R project/NDVI")
 list.files()
 #Creating new raster layers
@@ -58,6 +58,7 @@ names(STT)
 #plotting NDVI for different years
 plot(STT)
 writeRaster(STT,"NDVI_TS_output",format="GTIFF", type="INT2U", overwrite=TRUE)
+
 # NDWI 
 setwd("J:/R project/LC08_L2SP_136045_20131217_12.17.2013")
 getwd()
@@ -68,7 +69,6 @@ NDWI_2013=(NIR_2013-SWIR_2013)/(NIR_2013+SWIR_2013)
 plot(NDWI_2013)
 #Save Output
 writeRaster(NDWI_2013,"NDWI_2013_output",format="GTIFF", type="INT2U", overwrite=TRUE)
-
 setwd("J:/R project/LC08_L2SP_136045_20181231_31.12.2018")
 getwd()
 NIR_2018 = raster("J:/R project/LC08_L2SP_136045_20181231_31.12.2018/LC08_L2SP_136045_20181231_20200830_02_T1_SR_B5.TIF")
@@ -82,7 +82,6 @@ NIR_2022 = raster("J:/R project/LC08_L2SP_136045_20221226_26.12.2022/LC08_L2SP_1
 SWIR_2022 = raster("J:/R project/LC08_L2SP_136045_20221226_26.12.2022/LC08_L2SP_136045_20221226_20230103_02_T1_SR_B6.TIF")
 NDWI_2022 = (NIR_2022-SWIR_2022)/(NIR_2022+SWIR_2022)
 plot(NDWI_2022)
-
 writeRaster(NDWI_2022,"NDWI_2022_output",format="GTIFF", type="INT2U", overwrite=TRUE)
 
 setwd("J:/R project/NDWI")
@@ -108,5 +107,4 @@ STT_W <- stack(mget(rep("st_w")))
 names(STT_W)
 #Plotting NDWI for different years
 plot(STT_W)
-
 writeRaster(STT_W,"NDWI_TS_output",format="GTIFF", type="INT2U", overwrite=TRUE)
